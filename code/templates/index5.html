@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Sales Prediction</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Arial', sans-serif;
+        }
+        .form-container {
+            background: #ffffff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+        .form-container h1 {
+            color: #4c6788;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .btn-custom {
+            background-color: #4c6788;
+            color: #ffffff;
+            border: none;
+        }
+        .btn-custom:hover {
+            background-color: #3e5672;
+        }
+        .result {
+            margin-top: 1rem;
+            text-align: center;
+        }
+        .result h2 {
+            color: #4c6788;
+        }
+        .result p {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Product Sales Prediction</h1>
+        <form method="POST" action="/predicts">
+            <div class="mb-3">
+                <label for="price" class="form-label">Price:</label>
+                <input type="text" id="price" name="price" class="form-control" placeholder="Enter price">
+            </div>
+            <div class="mb-3">
+                <label for="availability" class="form-label">Availability:</label>
+                <input type="text" id="availability" name="availability" class="form-control" placeholder="Enter availability">
+            </div>
+            <div class="mb-3">
+                <label for="stock_levels" class="form-label">Stock Levels:</label>
+                <input type="text" id="stock_levels" name="stock_levels" class="form-control" placeholder="Enter stock levels">
+            </div>
+            <div class="mb-3">
+                <label for="lead_times" class="form-label">Lead Times:</label>
+                <input type="text" id="lead_times" name="lead_times" class="form-control" placeholder="Enter lead times">
+            </div>
+            <div class="mb-3">
+                <label for="order_quantities" class="form-label">Order Quantities:</label>
+                <input type="text" id="order_quantities" name="order_quantities" class="form-control" placeholder="Enter order quantities">
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-custom">Predicts</button>
+            </div>
+        </form>
+        <div class="result">
+            {% if prediction %}
+                <h2>Predicted Sales: {{ prediction }} K</h2>
+            {% endif %}
+            {% if error %}
+                <p>Error: {{ error }}</p>
+            {% endif %}
+        </div>
+    </div>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
